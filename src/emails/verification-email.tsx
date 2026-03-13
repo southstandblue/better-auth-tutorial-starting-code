@@ -10,6 +10,7 @@ import {
   Section,
   Text,
   Tailwind,
+  Img,
 } from "@react-email/components";
 
 interface EmailVerificationProps {
@@ -34,6 +35,16 @@ const EmailVerification = (props: EmailVerificationProps) => {
         </Preview>
         <Body className="bg-gray-100 py-[40px] font-sans">
           <Container className="mx-auto max-w-[600px] rounded-[8px] bg-white p-[32px]">
+            {/* Company Logo */}
+            <Section className="mb-[32px] text-center">
+              <Img
+                src="https://new.email/static/app/placeholder.png"
+                alt="Company Logo"
+                width="120"
+                height="40"
+                className="mx-auto h-auto w-full max-w-[120px] object-cover"
+              />
+            </Section>
             {/* Header */}
             <Section className="mb-[32px] text-center">
               <Heading className="m-0 mb-[8px] text-[28px] font-bold text-gray-900">
