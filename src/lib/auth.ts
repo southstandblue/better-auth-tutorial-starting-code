@@ -1,9 +1,9 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "./prisma";
-import { sendEmail } from "./email";
 import { passwordSchema } from "./validation";
 import { APIError, createAuthMiddleware } from "better-auth/api";
+import { sendEmail, sendVerificationEmail } from "./email";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -34,10 +34,11 @@ export const auth = betterAuth({
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     async sendVerificationEmail({ user, url }) {
-      await sendEmail({
+      await sendVerificationEmail({
         to: user.email,
         subject: "Verify your email",
-        text: `Click on the link to verify your email: ${url}`,
+        name: user.name,
+        url: url,
       });
     },
   },
